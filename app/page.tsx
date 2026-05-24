@@ -1,65 +1,187 @@
-import Image from "next/image";
+import { currentUser } from "@clerk/nextjs/server";
+import Link from "next/link";
+import { 
+  ArrowRight, 
+  Cpu, 
+  Zap, 
+  Shield, 
+  BarChart3, 
+  Lock, 
+  Compass, 
+  Sparkles 
+} from "lucide-react";
 
-export default function Home() {
+export default async function Home() {
+  const user = await currentUser();
+
+  const features = [
+    {
+      title: "Real-Time AI Telemetry",
+      description: "Monitor tokens, accuracy metrics, and latency logs directly as request processing occurs.",
+      icon: Zap,
+    },
+    {
+      title: "Secure Enterprise Guardrails",
+      description: "Configure policies and safety guardrails to automatically filter PII and malicious inputs.",
+      icon: Shield,
+    },
+    {
+      title: "Model Hub & Performance Routing",
+      description: "Route requests dynamically to different LLMs based on complexity, speed requirements, and cost.",
+      icon: Cpu,
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="relative min-h-screen overflow-hidden bg-zinc-950 text-zinc-100 selection:bg-indigo-500 selection:text-white">
+      {/* Decorative background grids & gradient glows */}
+      <div className="absolute top-[-10%] left-[-10%] -z-10 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[120px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] -z-10 h-[600px] w-[600px] rounded-full bg-violet-600/10 blur-[120px]" />
+      <div 
+        className="absolute inset-0 -z-20 opacity-[0.02]"
+        style={{
+          backgroundImage: `radial-gradient(ellipse at center, #ffffff 1px, transparent 1px)`,
+          backgroundSize: "24px 24px"
+        }}
+      />
+
+
+
+      {/* Hero Section */}
+      <section className="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-32 lg:px-8">
+        <div className="mx-auto max-w-3xl flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1 text-sm font-semibold text-indigo-400 mb-6">
+            <Sparkles className="h-4 w-4" />
+            <span>Introducing SenseAI 1.0</span>
+          </div>
+
+          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-7xl">
+            A Unified Hub for
+            <span className="block mt-2 bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              AI Analytics & Routing
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-zinc-400">
+            Secure, optimize, and observe your large language model integrations in real-time. Make every call context-aware, low-latency, and cost-efficient.
           </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 justify-center">
+            {user ? (
+              <Link
+                href="/dashboard"
+                className="group inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white transition-all hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 active:scale-95"
+              >
+                <span>Go to Dashboard</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/sign-up"
+                  className="group inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white transition-all hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 active:scale-95"
+                >
+                  <span>Get Started Free</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/sign-in"
+                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/60 px-6 py-3 text-base font-semibold text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                >
+                  <span>Request Demo</span>
+                </Link>
+              </>
+            )}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Dashboard Preview Mockup */}
+        <div className="relative mx-auto mt-20 max-w-5xl rounded-2xl border border-zinc-800 bg-zinc-900/30 p-2 shadow-2xl backdrop-blur-sm sm:p-4">
+          <div className="absolute -top-6 left-1/2 -z-10 h-[250px] w-[250px] -translate-x-1/2 rounded-full bg-indigo-500/20 blur-[100px]" />
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden shadow-inner">
+            {/* Mock Dashboard Topbar */}
+            <div className="flex h-11 items-center justify-between border-b border-zinc-900 bg-zinc-900/30 px-4">
+              <div className="flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full bg-rose-500/80" />
+                <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+                <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+              </div>
+              <div className="rounded bg-zinc-900 px-10 py-1 text-xs font-mono text-zinc-500 border border-zinc-850">
+                senseai.dev/dashboard
+              </div>
+              <div className="h-4 w-4 rounded bg-zinc-900" />
+            </div>
+
+            {/* Mock Dashboard Content */}
+            <div className="p-6 text-left grid gap-6 md:grid-cols-3">
+              <div className="md:col-span-2 space-y-4">
+                <div className="h-6 w-48 rounded bg-zinc-850 animate-pulse" />
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-lg border border-zinc-900 bg-zinc-900/10 p-4">
+                    <div className="h-3 w-16 rounded bg-zinc-850 mb-3" />
+                    <div className="h-5 w-24 rounded bg-zinc-800" />
+                  </div>
+                  <div className="rounded-lg border border-zinc-900 bg-zinc-900/10 p-4">
+                    <div className="h-3 w-20 rounded bg-zinc-850 mb-3" />
+                    <div className="h-5 w-16 rounded bg-zinc-800" />
+                  </div>
+                  <div className="rounded-lg border border-zinc-900 bg-zinc-900/10 p-4">
+                    <div className="h-3 w-12 rounded bg-zinc-850 mb-3" />
+                    <div className="h-5 w-20 rounded bg-zinc-800" />
+                  </div>
+                </div>
+                <div className="rounded-lg border border-zinc-900 bg-zinc-900/15 p-6 h-48 flex items-end justify-between gap-2">
+                  <div className="w-[10%] bg-zinc-850 rounded-t h-[40%] animate-pulse" />
+                  <div className="w-[10%] bg-indigo-900/40 rounded-t h-[65%]" />
+                  <div className="w-[10%] bg-zinc-850 rounded-t h-[30%]" />
+                  <div className="w-[10%] bg-indigo-900/50 rounded-t h-[75%]" />
+                  <div className="w-[10%] bg-zinc-850 rounded-t h-[50%]" />
+                  <div className="w-[10%] bg-indigo-600/70 rounded-t h-[95%]" />
+                  <div className="w-[10%] bg-zinc-850 rounded-t h-[60%]" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="h-6 w-28 rounded bg-zinc-850" />
+                <div className="rounded-lg border border-zinc-900 bg-zinc-900/10 p-4 space-y-3">
+                  <div className="flex justify-between items-center"><div className="h-3 w-24 rounded bg-zinc-850" /><div className="h-3.5 w-8 rounded bg-zinc-800" /></div>
+                  <div className="flex justify-between items-center"><div className="h-3 w-20 rounded bg-zinc-850" /><div className="h-3.5 w-10 rounded bg-zinc-800" /></div>
+                  <div className="flex justify-between items-center"><div className="h-3 w-28 rounded bg-zinc-850" /><div className="h-3.5 w-6 rounded bg-zinc-800" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Features Grid */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 border-t border-zinc-900 mt-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, i) => {
+            const Icon = feature.icon;
+            return (
+              <div
+                key={i}
+                className="group rounded-xl border border-zinc-900 bg-zinc-900/10 p-6 backdrop-blur-sm transition-all hover:border-zinc-800 hover:bg-zinc-900/30"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600/10 text-indigo-400 group-hover:scale-110 transition-transform">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-white">{feature.title}</h3>
+                <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="mx-auto max-w-7xl px-4 py-12 text-center sm:px-6 lg:px-8 border-t border-zinc-900">
+        <p className="text-sm text-zinc-600">
+          &copy; 2026 SenseAI. All rights reserved. Secure identity powered by Clerk.
+        </p>
+      </footer>
     </div>
   );
 }
