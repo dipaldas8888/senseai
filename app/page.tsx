@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 import { 
   ArrowRight, 
   Cpu, 
@@ -86,9 +87,9 @@ export default async function Home() {
                 </Link>
                 <Link
                   href="/sign-in"
-                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/60 px-6 py-3 text-base font-semibold text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+                  className={buttonVariants({ variant: "outline", size: "lg", className: "px-6 py-3 text-base font-semibold" })}
                 >
-                  <span>Request Demo</span>
+                  Request Demo
                 </Link>
               </>
             )}

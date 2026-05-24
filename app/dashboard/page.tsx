@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   TrendingUp,
   Users,
@@ -14,8 +15,12 @@ import {
   Clock,
   Sparkles
 } from "lucide-react";
+import { checkAndSyncUser } from "@/lib/userSync";
 
 export default async function DashboardPage() {
+  // Sync the authenticated user with the Supabase database
+  await checkAndSyncUser();
+
   const user = await currentUser();
 
   // Mock analytics data
@@ -86,10 +91,10 @@ export default async function DashboardPage() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm px-4 py-2.5 rounded-lg transition-all shadow-lg shadow-indigo-600/20 active:scale-95">
+            <Button className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm px-4 py-2.5 rounded-lg transition-all shadow-lg shadow-indigo-600/20 active:scale-95 gap-2">
               <span>Deploy New Model</span>
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </Button>
           </div>
         </div>
 
