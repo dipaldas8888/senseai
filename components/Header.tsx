@@ -28,12 +28,12 @@ export default async function Header() {
   const user = await currentUser();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-gradient-to-b from-black/80 to-black/40 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/15 backdrop-blur-md transition-colors">
+      <div className="flex h-16 w-full items-center justify-between px-6 lg:px-10">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold tracking-tight text-white hover:opacity-90"
+          className="flex items-center gap-2 text-xl font-bold tracking-tight text-white hover:opacity-90 pl-5"
         >
           <Image
             src="/logo.png"
@@ -51,7 +51,7 @@ export default async function Header() {
             href="/dashboard"
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              "hidden items-center gap-2 text-zinc-300 hover:bg-white/10 hover:text-white md:flex"
+              "hidden items-center gap-2 text-zinc-300 hover:bg-white/10 hover:text-white md:flex",
             )}
           >
             <LayoutDashboard className="h-4 w-4" />
@@ -63,7 +63,7 @@ export default async function Header() {
             href="/dashboard"
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon" }),
-              "text-zinc-300 hover:bg-white/10 hover:text-white md:hidden"
+              "text-zinc-300 hover:bg-white/10 hover:text-white md:hidden",
             )}
           >
             <LayoutDashboard className="h-4 w-4" />
@@ -73,7 +73,10 @@ export default async function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
-                <Button data-slot="dropdown-menu-trigger" className="flex items-center gap-2 rounded-xl bg-white text-black hover:bg-zinc-200">
+                <Button
+                  data-slot="dropdown-menu-trigger"
+                  className="flex items-center gap-2 rounded-xl bg-white text-black hover:bg-zinc-200"
+                >
                   <Sparkles className="h-4 w-4" />
                   <span className="hidden md:block">AI Tools</span>
                   <ChevronDown className="h-4 w-4" />
