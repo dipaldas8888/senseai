@@ -44,16 +44,16 @@ const Hero = () => {
       </div>
 
       {/* Content overlay using motion for smooth initial load animations */}
-      <div className="relative z-10 mx-auto max-w-5xl px-4 text-center flex flex-col items-center gap-7">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 text-center flex flex-col items-center gap-7">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl font-extrabold tracking-tighter text-white sm:text-7xl md:text-8xl max-w-5xl leading-[1.1] mb-6"
+          className="text-5xl font-extrabold tracking-tighter text-white sm:text-7xl md:text-8xl max-w-7xl leading-[1.1] mb-6"
         >
           Your AI Career Coach for Professional Success
         </motion.h1>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,7 +89,7 @@ const Hero = () => {
             transformStyle: "preserve-3d",
             perspective: 1200,
           }}
-          className="w-full max-w-[1200px] mt-12 rounded-2xl border border-zinc-800/80 bg-zinc-950/20 p-2 overflow-hidden shadow-[0_0_50px_0_rgba(99,102,241,0.15)] origin-top transition-all duration-300 ease-out"
+          className="w-full max-w-7xl mt-12 rounded-2xl border border-zinc-800/80 bg-zinc-950/20 p-2 overflow-hidden shadow-[0_0_50px_0_rgba(99,102,241,0.15)] origin-top transition-all duration-300 ease-out"
         >
           <Image
             src="/banner.jpeg"
