@@ -9,27 +9,18 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Track the scroll progress of the banner container relative to the viewport.
-  // "start end" means start tracking when the top of the element hits the bottom of the viewport.
-  // "end end" means finish tracking when the bottom of the element reaches the bottom of the viewport.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end end"],
   });
 
-  // Map the 0-1 scroll progress to custom CSS values:
-  // 1. rotateX: starts tilted backward at 20 degrees, rotates flat to 0 degrees as it enters the view.
   const rotateX = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  // 2. scale: starts at 0.93 scale, scales up to 1.0 (full size).
   const scale = useTransform(scrollYProgress, [0, 1], [0.93, 1]);
-  // 3. opacity: starts semi-transparent (0.6), goes to full opacity (1.0).
   const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
-  // 4. y: adds a subtle vertical rise animation as the user scrolls.
   const translateY = useTransform(scrollYProgress, [0, 1], [60, 0]);
 
   return (
     <div className="relative w-full min-h-[650px] md:min-h-[750px] flex flex-col justify-start items-center overflow-hidden bg-black pt-32 md:pt-36">
-      {/* Background WebGL Shader waves */}
       <div className="absolute inset-0 z-0">
         <DarkVeil
           hueShift={265}
@@ -43,8 +34,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,black_90%)]" />
       </div>
 
-      {/* Content overlay using motion for smooth initial load animations */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 text-center flex flex-col items-center gap-7">
+      <div className="relative z-10 mx-auto max-w-10xl px-4 text-center flex flex-col items-center gap-7">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -78,7 +68,6 @@ const Hero = () => {
           </Link>
         </motion.div>
 
-        {/* 3D Scroll-Linked Animated Banner Container */}
         <motion.div
           ref={containerRef}
           style={{
