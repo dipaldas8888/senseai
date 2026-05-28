@@ -25,22 +25,26 @@ export async function checkAndSyncUser() {
     });
 
     if (!dbUser) {
-      // Create the user in the database, mapping Clerk's user ID directly
       dbUser = await prisma.user.create({
         data: {
           id: user.id,
+          clerkUserId: user.id,
           email,
           name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || user.username || null,
+          imageUrl: user.imageUrl || null,
         },
       });
       console.log(`Successfully synced new user: ${email} (ID: ${user.id})`);
-    } else if (dbUser.id !== user.id) {
-      // If user exists with this email but the ID is different (e.g. seed data), update it
+    } else if (dbUser.id !== user.id || !dbUser.clerkUserId) {
       dbUser = await prisma.user.update({
         where: { email },
-        data: { id: user.id },
+        data: { 
+          id: user.id,
+          clerkUserId: user.id,
+          imageUrl: user.imageUrl || null,
+        },
       });
-      console.log(`Updated database user ID for ${email} to match Clerk ID ${user.id}`);
+      console.log(`Updated database user ID and clerkUserId for ${email} to match Clerk ID ${user.id}`);
     }
 
     return dbUser;
