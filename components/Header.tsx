@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { currentUser } from "@clerk/nextjs/server";
-import { UserButton } from "@clerk/nextjs";
+import HeaderAuth from "./HeaderAuth";
 
 import {
   LayoutDashboard,
@@ -24,9 +23,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
-export default async function Header() {
-  const user = await currentUser();
-
+export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/15 backdrop-blur-md transition-colors">
       <div className="flex h-16 w-full items-center justify-between px-6 lg:px-10">
@@ -118,39 +115,7 @@ export default async function Header() {
           </DropdownMenu>
 
           {/* Auth Section */}
-          {user ? (
-            <div className="flex items-center gap-4 border-l border-zinc-800 pl-4">
-              <span className="hidden text-sm text-zinc-400 sm:inline">
-                {user.firstName || user.username}
-              </span>
-
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-10 h-10",
-                    userButtonPopoverCard:
-                      "bg-zinc-900 border border-white/10 shadow-2xl",
-                  },
-                }}
-              />
-            </div>
-          ) : (
-            <div className="flex items-center gap-3">
-              <Link
-                href="/sign-in"
-                className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-white"
-              >
-                Sign In
-              </Link>
-
-              <Link
-                href="/sign-up"
-                className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
-              >
-                Sign Up
-              </Link>
-            </div>
-          )}
+          <HeaderAuth />
         </nav>
       </div>
     </header>
