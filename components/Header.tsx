@@ -87,23 +87,38 @@ export default function Header() {
               className="w-60 border border-white/10 bg-zinc-950/95 text-white backdrop-blur-xl"
             >
               <DropdownMenuItem className="cursor-pointer gap-2 py-3 hover:bg-white/10">
-                <FileText className="h-4 w-4" />
-                Resume Builder
+                <Link href="/resume" className="flex w-full items-center gap-2">
+                  <FileText className="h-4 w-4" />
+                  Resume Builder
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem className="cursor-pointer gap-2 py-3 hover:bg-white/10">
-                <PenBox className="h-4 w-4" />
-                AI Cover Letter
+                <Link href="/resume/ats" className="flex w-full items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-emerald-400 animate-pulse" />
+                  ATS Resume Checker
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem className="cursor-pointer gap-2 py-3 hover:bg-white/10">
-                <GraduationCap className="h-4 w-4" />
-                Interview Preparation
+                <Link href="/cover-letter" className="flex w-full items-center gap-2">
+                  <PenBox className="h-4 w-4" />
+                  AI Cover Letter
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem className="cursor-pointer gap-2 py-3 hover:bg-white/10">
-                <Briefcase className="h-4 w-4" />
-                Career Roadmap
+                <Link href="/interview" className="flex w-full items-center gap-2">
+                  <GraduationCap className="h-4 w-4" />
+                  Interview Preparation
+                </Link>
+              </DropdownMenuItem>
+
+              <DropdownMenuItem className="cursor-pointer gap-2 py-3 hover:bg-white/10">
+                <Link href="/roadmap" className="flex w-full items-center gap-2">
+                  <Briefcase className="h-4 w-4" />
+                  Career Roadmap
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuSeparator className="bg-white/10" />
