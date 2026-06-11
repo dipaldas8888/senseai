@@ -83,9 +83,7 @@ senseai/
 │   ├── (main)/                   # Main layout group
 │   │   ├── resume/               # Resume builder
 │   │   ├── cover-letter/         # Cover letter generator
-│   │   ├── interview/            # Interview prep
 │   │   ├── onboarding/           # Onboarding flow
-│   │   └── mock/                 # Mock interviews
 │   ├── dashboard/                # User dashboard
 │   ├── sign-in/                  # Clerk auth signin
 │   ├── sign-up/                  # Clerk auth signup
