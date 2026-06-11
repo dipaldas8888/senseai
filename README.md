@@ -10,9 +10,7 @@ SenseAI is a full-stack web application built with modern technologies to stream
 
 - 📄 **Resume Builder** - Create ATS-optimized resumes with multiple templates
 - ✉️ **Cover Letter Generator** - AI-generated, tailored cover letters
-- 🎤 **Interview Preparation** - Mock interview simulations and guidance
-- 📊 **Onboarding & Assessment** - Industry-specific assessments and insights
-- 👤 **User Dashboard** - Centralized hub for all career tools
+- 📊 ATS Resume Scoring – Analyze resumes against industry standards and provide ATS compatibility scores with actionable improvement suggestions.
 - 🔐 **Secure Authentication** - Enterprise-grade user authentication
 
 ---
